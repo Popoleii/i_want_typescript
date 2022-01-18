@@ -56,9 +56,9 @@ type MyReturnTypeItem = {
   
   };
 
-  console.log(formaterDonnees().then(data => console.log(typeof data)))
+  /** console.log(formaterDonnees().then(data => console.log(typeof data)))
 
-
+*/
 
   import { createServer, IncomingMessage, ServerResponse } from 'http';
  

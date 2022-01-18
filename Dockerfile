@@ -17,7 +17,7 @@
 
  # installation des dépendances avec npm
  RUN git clone https://github.com/Popoleii/i_want_typescript.git
- RUN cd i_want_typescript
+ WORKDIR /app/i_want_typescript
 
 
  # build avec npm
