@@ -13,7 +13,7 @@ const si = require('systeminformation');
     .catch(error => console.error(error)); */
     
 
-    type MyReturnTypeItem = {
+type MyReturnTypeItem = {
       cpu: string[];
       system: string[];
       mem: string[];
@@ -56,4 +56,28 @@ const si = require('systeminformation');
   
   };
 
-  console.log(formaterDonnees().then(data => console.log(data)))
+  console.log(formaterDonnees().then(data => console.log(typeof data)))
+
+
+
+  import { createServer, IncomingMessage, ServerResponse } from 'http';
+ 
+  const port = 8000;
+   
+  const server = createServer((request: IncomingMessage, response: ServerResponse) => {
+    switch (request.url) {
+      case '/api/v1/sysinfo': {
+        if (request.method === 'GET') {
+            let stringRes: string = "rien";
+            formaterDonnees().then(data => response.end(JSON.stringify(data)));
+        }
+        break;
+      }
+      default: {
+        response.statusCode = 404;
+        response.end("La c'est 404 deso");
+      }
+    }
+  });
+
+  server.listen(port);
