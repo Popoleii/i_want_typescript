@@ -29,7 +29,9 @@
     "url": "https://github.com/khannurien/i-want-typescript/issues"
   },
   "homepage": "https://github.com/khannurien/i-want-typescript#readme",
-  "dependencies": {},
+  "dependencies": {
+    "systeminformation": "^5.10.3"
+  },
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.0",
