@@ -1,5 +1,5 @@
 # image de départ
- FROM alpine:3.15
+ FROM alpine:3.15 as builder
 
  # chemin de travail
  WORKDIR /app
@@ -25,4 +25,25 @@
  RUN npm run build 
 
  # exécution
- CMD ["npx" , "ts-node" , "src/index.ts"]
+ FROM alpine:3.15 as runner
+
+# chemin de travail
+ WORKDIR /app
+
+ # downgrade des privilèges
+ USER root
+
+ # installation des paquets système
+ RUN apk update && apk upgrade
+ RUN apk add nodejs>16
+ RUN apk update && apk upgrade
+
+# copie des répertoires nécessaires à l'exécution
+ COPY --from=builder --chown=root:root /app/i_want_typescript/dist/ dist
+ COPY --from=builder --chown=root:root /app/i_want_typescript/node_modules/ node_modules
+
+# diminution droits user
+# USER user
+
+# exécution
+ CMD ["node", "dist/index.js"]
