@@ -62,7 +62,7 @@ type MyReturnTypeItem = {
 
   import { createServer, IncomingMessage, ServerResponse } from 'http';
  export function serve() {
-  const port = 8000;
+  const port = (process.env.PORT || 5000);
    
   const server = createServer((request: IncomingMessage, response: ServerResponse) => {
     switch (request.url) {
@@ -76,13 +76,13 @@ type MyReturnTypeItem = {
       default: {
         response.statusCode = 404;
         response.end("La c'est 404 deso mon reuf");
-        
+
       }
     }
   });
 
   server.listen(port); 
-console.log("server ready : http://localhost:8000 ")};
+console.log("sacha cutillas est un bg")};
 
 
 

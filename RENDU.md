@@ -27,3 +27,12 @@ Docker :
 
 9. Pour tester le bon fonctionnement j'ai fait en sorte que les tests ne soient pas réussi et j'ai vérifié que si je pushais, cela ne se deployait pas sur dockerhub. 
 
+
+
+
+
+
+
+
+question probleme cli. Le port est assigné dynamiquement sur heroku, il faut donc modifier l'appli pour assigner dynamiquement le port. 
+
