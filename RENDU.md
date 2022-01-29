@@ -25,5 +25,5 @@ Docker :
 8.  sudo docker pull popoleii/sysinfo-api:0.0.2
 
 
-9. Pour tester le bon fonctionnement j'ai fait en sorte que les tests ne soient pas réussi et j'ai vérifié que si je pushais, cela ne se deployait pas sur github. 
+9. Pour tester le bon fonctionnement j'ai fait en sorte que les tests ne soient pas réussi et j'ai vérifié que si je pushais, cela ne se deployait pas sur dockerhub. 
 
