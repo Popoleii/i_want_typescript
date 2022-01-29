@@ -18,6 +18,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test
+    - run: docker logout
     - name: use docker
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -26,4 +27,4 @@ jobs:
 
     - run: docker  build --no-cache -t sysinfo-api:0.0.2 . 
     - run: sudo docker tag sysinfo-api:0.0.2 popoleii/sysinfo-api:0.0.2
-    - run: sudo docker push popoleii/sysinfo-api:0.0.2
+    - run: sudo docker push ${{secrets.DOCKER_USER}}/sysinfo-api:0.0.2
