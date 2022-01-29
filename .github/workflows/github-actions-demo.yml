@@ -26,5 +26,5 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - run: docker  build --no-cache -t sysinfo-api:0.0.2 . 
-    - run: sudo docker tag sysinfo-api:0.0.2 popoleii/sysinfo-api:0.0.2
+    - run: sudo docker tag sysinfo-api:0.0.2 ${{secrets.DOCKER_USER}}/sysinfo-api:0.0.2
     - run: sudo docker push ${{secrets.DOCKER_USER}}/sysinfo-api:0.0.2
