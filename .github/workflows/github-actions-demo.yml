@@ -18,13 +18,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test
-
-
     - name: use docker
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p DOCKER_PASSWORD
-      run: docker  build --no-cache -t sysinfo-api:0.0.2 . 
-      run: sudo docker tag sysinfo-api:0.0.2 popoleii/sysinfo-api:0.0.2
-      run: sudo docker push popoleii/sysinfo-api:0.0.2 
+
+    - run: docker  build --no-cache -t sysinfo-api:0.0.2 . 
+    - run: sudo docker tag sysinfo-api:0.0.2 popoleii/sysinfo-api:0.0.2
+    - run: sudo docker push popoleii/sysinfo-api:0.0.2
