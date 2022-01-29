@@ -15,7 +15,7 @@
     "fix:prettier": "prettier --write .",
     "fix:eslint": "eslint \"src/**/*.ts\" --fix",
     "start": "node dist/index.js",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:coverage": "jest --coverage",
     "watch": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
   },

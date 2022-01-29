@@ -61,7 +61,7 @@ type MyReturnTypeItem = {
 */
 
   import { createServer, IncomingMessage, ServerResponse } from 'http';
- 
+ export function serve() {
   const port = 8000;
    
   const server = createServer((request: IncomingMessage, response: ServerResponse) => {
@@ -80,4 +80,11 @@ type MyReturnTypeItem = {
     }
   });
 
-  server.listen(port);
+  server.listen(port); 
+console.log("server ready : http://localhost:8000 ")};
+
+
+
+if (require.main === module) {
+  serve();
+}
