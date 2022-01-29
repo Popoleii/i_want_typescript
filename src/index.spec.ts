@@ -1,8 +1,17 @@
-import { helloWorld } from './index';
+import * as si from 'systeminformation';
+import { formaterDonnees } from './index';
+
+function isSystemInformation(object: any){
+  if (typeof object === "string" && object.includes("{\"ISystemInformation\"")) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
 
 describe('typeScript test suite', () => {
-  it('should return "Hello world!"', () => {
-    expect.assertions(1);
-    expect(helloWorld()).toBe('Hello world!');
+  it('should be the right format', async () => {
+    formaterDonnees().then(data => expect(isSystemInformation(JSON.stringify(data))).toBe(true));
   });
 });

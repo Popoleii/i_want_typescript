@@ -28,7 +28,7 @@ type MyReturnTypeItem = {
       [name: string]: MyReturnTypeItem;
   }
   
-  async function formaterDonnees(): Promise<MyReturnType> {
+  export async function formaterDonnees(): Promise<MyReturnType> {
       var json = {
           ISystemInformation: {
               "cpu": [],
