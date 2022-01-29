@@ -2,7 +2,7 @@ import * as si from 'systeminformation';
 import { formaterDonnees } from './index';
 
 function isSystemInformation(object: any){
-  if (typeof object === "string" && object.includes("{\"ISystemInforesmation\"")) {
+  if (typeof object === "string" && object.includes("{\"ISystemInformation\"")) {
     return true;
   }else{
     return false;
