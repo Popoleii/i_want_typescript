@@ -75,7 +75,7 @@ type MyReturnTypeItem = {
       }
       default: {
         response.statusCode = 404;
-        response.end("La c'est 404 deso mon reuf");
+        response.end("Erreur 404 du test ! ouais");
 
       }
     }
