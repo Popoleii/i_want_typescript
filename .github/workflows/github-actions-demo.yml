@@ -39,4 +39,8 @@ jobs:
 
     - run: docker tag sysinfo-api:0.0.2 registry.heroku.com/sysinfo-api-popoleii/web
     - run: docker push registry.heroku.com/sysinfo-api-popoleii/web
-    - run: heroku container:release web -a sysinfo-api-popoleii
+    - name: Release
+      env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      run: heroku container:release web -a sysinfo-api-popoleii 
