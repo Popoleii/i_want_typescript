@@ -30,3 +30,21 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - run: docker push ${{secrets.DOCKER_USER}}/sysinfo-api:0.0.2
+
+    - name: Heroku login credentials
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+
+    - run: docker tag sysinfo-api:0.0.2 registry.heroku.com/sysinfo-api-popoleii/web
+    - run: docker push registry.heroku.com/sysinfo-api-popoleii/web
+    - run: heroku container:release web -a sysinfo-api-popoleii

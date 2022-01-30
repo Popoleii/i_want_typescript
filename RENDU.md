@@ -36,3 +36,8 @@ Docker :
 
 question probleme cli. Le port est assigné dynamiquement sur heroku, il faut donc modifier l'appli pour assigner dynamiquement le port. 
 
+c'est le point VII : Associations de ports.
+
+![image-20220130134539740](./rapport/image1.png)
+
+
