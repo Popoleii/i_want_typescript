@@ -69,6 +69,7 @@ type MyReturnTypeItem = {
       case '/api/v1/sysinfo': {
         if (request.method === 'GET') {
             let stringRes: string = "rien";
+            response.writeHead(200 , {"Content-type": "application/json"});
             formaterDonnees().then(data => response.end(JSON.stringify(data)));
         }
         break;
