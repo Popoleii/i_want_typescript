@@ -1,5 +1,5 @@
 # image de départ
- FROM alpine:3.15 as builder
+ FROM alpine:3.15 AS builder
 
  # chemin de travail
  WORKDIR /app
@@ -21,11 +21,13 @@
 
 
  # build avec npm
+ RUN npm install --only=production 
+ RUN cp -R node_modules prod_modules
  RUN npm install
  RUN npm run build 
 
  # exécution
- FROM alpine:3.15 as runner
+ FROM alpine:3.15 AS runner
 
 # chemin de travail
  WORKDIR /app
@@ -38,12 +40,14 @@
  RUN apk add nodejs>16
  RUN apk update && apk upgrade
 
+ RUN addgroup -S node && adduser -S node -G node
+
 # copie des répertoires nécessaires à l'exécution
  COPY --from=builder --chown=root:root /app/i_want_typescript/dist/ dist
- COPY --from=builder --chown=root:root /app/i_want_typescript/node_modules/ node_modules
+ COPY --from=builder --chown=root:root /app/i_want_typescript/prod_modules/ node_modules
 
 # diminution droits user
-# USER user
+ USER node
 
 # exécution
  CMD ["node", "dist/index.js"]

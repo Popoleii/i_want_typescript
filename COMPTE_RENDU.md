@@ -28,6 +28,19 @@ Le fichier `package-lock.json` recense tous les modules node utilisés.
 
 6. Pour le premier docker on a une taille de l'app de 232MB. Après avoir modifié le dockerfile: en ne copiant que les parties utiles on a maintenant une taille de l'image de 189MB! 
 
+**UPDATE: **
+Changement par rapport à mardi, j'ai modifié le docker pour ne garder que les dépendances de production : 
+``` dockerfile
+RUN npm install --only=production 
+ RUN cp -R node_modules prod_module
+ RUN npm install
+ RUN npm run build 
+```
+
+ l'image fait maintenant 58.6MB  !! 
+
+ J'ai également modifié le Dockerfile pour faire la diminution des droits user. 
+
 8.  `sudo docker pull popoleii/sysinfo-api:0.0.2` pour télécharger mon image publiée, puis après je build normalement. 
 
 
@@ -53,7 +66,8 @@ Sur une machine virtuelle on aurait seulement les informations allouées à la V
 
 7. Pour automatiser le déploiement sur Heroku j'ai modifié le fichier yml de cette façon : 
 
- ```   - name: Connect on Heroku w Docker
+ ```yaml
+    - name: Connect on Heroku w Docker
       env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
@@ -65,5 +79,5 @@ Sur une machine virtuelle on aurait seulement les informations allouées à la V
       env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-      run: heroku container:release web -a sysinfo-api-popoleii ```
-
+      run: heroku container:release web -a sysinfo-api-popoleii 
+ ```
